@@ -1,0 +1,6 @@
+Hostname	UbiquitiUniFiACLR
+Model	Ubiquiti UniFi AC LR
+Architecture	Qualcomm Atheros QCA956X ver 1 rev 0
+Target Platform	ath79/generic
+Firmware Version	OpenWrt 25.12.5 r33051-f5dae5ece4 / LuCI openwrt-25.12 branch 26.275.27740~2858f8d
+Kernel Version	6.12.94

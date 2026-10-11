@@ -1,0 +1,67 @@
+
+config pbr 'config'
+	option enabled '0'
+	option rule_create_option 'add'
+	option procd_boot_trigger_delay '5000'
+	option procd_reload_delay '1'
+	option webui_show_ignore_target '1'
+	option nft_rule_counter '0'
+	option nft_set_auto_merge '1'
+	option nft_set_counter '0'
+	option nft_set_flags_interval '1'
+	option nft_set_flags_timeout '0'
+	option nft_set_policy 'performance'
+	option uplink_interface 'wan'
+	list supported_interface 'tun*'
+	list webui_supported_protocol 'all'
+	list webui_supported_protocol 'tcp'
+	list webui_supported_protocol 'udp'
+	list webui_supported_protocol 'tcp udp'
+	list webui_supported_protocol 'icmp'
+	list webui_supported_protocol 'tcp icmp'
+	option strict_enforcement '0'
+	option resolver_set 'none'
+	option config_compat '27'
+	option config_version '1.2.2-r20'
+
+config policy
+	option name 'LAN-44'
+	option src_addr '192.168.1.0/24'
+	option dest_addr '192.168.44.0/22'
+	option interface 'socks5tun'
+	option proto 'all'
+	option enabled '0'
+
+config policy
+	option name 'youtube'
+	option dest_addr ' 91.105.192.0/23 91.108.4.0/22 91.108.8.0/21 91.108.16.0/21 91.108.56.0/22 149.154.160.0/20 185.76.151.0/24  64.233.0.0/16  74.125.0.0/16  108.177.0.0/16 142.250.0.0/16 142.251.0.0/16 172.217.0.0/16 216.58.0.0/16 api.telegram.org telegram.org core.telegram.org 95.216.1.192/24 173.194.0.0/16 104.16.0.0/12 185.107.92.1/24'
+	option proto 'all'
+	option interface 'socks5tun'
+	option src_addr '192.168.1.0/24'
+	option enabled '0'
+
+config policy
+	option name 'jantit'
+	option src_addr '192.168.1.0/24'
+	option dest_addr '165.22.0.0/16'
+	option proto 'all'
+	option interface 'socks5tun'
+	option enabled '0'
+
+config policy
+	option name 'downloads.openwrt.org'
+	option dest_addr '167.82.0.0/16 146.75.0.0/16'
+	option interface 'socks5tun'
+	option src_addr '192.168.0.3'
+	option chain 'output'
+	option proto 'all'
+	option enabled '0'
+
+config policy
+	option name 'deb.debian.org'
+	option dest_addr '146.15.0.0/16'
+	option interface 'socks5tun'
+	option src_addr '192.168.1.0/24'
+	option proto 'all'
+	option enabled '0'
+

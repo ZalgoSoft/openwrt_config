@@ -1,0 +1,91 @@
+
+config interface 'loopback'
+	option device 'lo'
+	option proto 'static'
+	option ipaddr '127.0.0.1'
+	option netmask '255.0.0.0'
+
+config globals 'globals'
+	option packet_steering '0'
+
+config device
+	option name 'br-lan'
+	option type 'bridge'
+	list ports 'eth0'
+	option stp '1'
+
+config interface 'lan'
+	option device 'br-lan'
+	option proto 'static'
+	option ipaddr '192.168.1.1'
+	option netmask '255.255.255.0'
+
+config interface 'wan'
+	option proto 'dhcp'
+	option device 'phy0-sta0'
+	option sendclientid 'auto'
+
+config interface 'socks5tun'
+	option proto 'none'
+	option device 'tun0'
+
+config interface 'ssh2tun'
+	option proto 'static'
+	option ipaddr '10.0.0.1'
+	option netmask '255.255.255.252'
+	option device '@socks5tun'
+
+config route
+	option interface 'wan'
+	option target '45.154.73.71/32'
+	option gateway '192.168.0.1'
+	option disabled '1'
+
+config route
+	option interface 'ssh2tun'
+	option target '18.172.31.0/24'
+	option disabled '1'
+
+config route
+	option interface 'ssh2tun'
+	option target '167.82.0.0/16'
+	option disabled '1'
+
+config route
+	option interface 'ssh2tun'
+	option target '146.75.0.0/16'
+	option disabled '1'
+
+config route
+	option interface 'ssh2tun'
+	option target '167.82.0.0/16'
+	option disabled '1'
+
+config switch
+	option name 'switch0'
+	option enable_vlan '0'
+
+config switch
+	option name 'switch1'
+	option reset '1'
+	option enable_vlan '0'
+	option enable_vlan4k '0'
+
+config device
+	option name 'eth0'
+
+config device
+	option name 'phy1-ap0'
+
+config device
+	option name 'phy0-sta0'
+
+config switch_vlan
+	option device 'switch1'
+	option ports '0 1 2 3 4 5 6 7'
+	option vlan '1'
+	option vid '1'
+
+config device
+	option name 'tun0'
+

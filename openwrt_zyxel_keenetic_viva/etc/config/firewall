@@ -1,0 +1,72 @@
+
+config defaults
+	option input 'REJECT'
+	option output 'ACCEPT'
+	option forward 'REJECT'
+	option flow_offloading '1'
+	option synflood_protect '1'
+	option drop_invalid '1'
+
+config zone
+	option name 'lan'
+	option input 'ACCEPT'
+	option output 'ACCEPT'
+	option forward 'REJECT'
+	list network 'lan'
+	option mtu_fix '1'
+	option auto_helper '0'
+
+config zone
+	option name 'wan'
+	option input 'REJECT'
+	option output 'ACCEPT'
+	option forward 'REJECT'
+	option masq '1'
+	option mtu_fix '1'
+	option auto_helper '0'
+	list network 'wan'
+
+config forwarding
+	option src 'lan'
+	option dest 'wan'
+
+config zone
+	option name 'tun'
+	option input 'REJECT'
+	option output 'ACCEPT'
+	option forward 'REJECT'
+	option masq '1'
+	option auto_helper '0'
+	list network 'ssh2tun'
+	list network 'socks5tun'
+	option mtu_fix '1'
+
+config forwarding
+	option src 'lan'
+	option dest 'tun'
+
+config zone
+	option name 'isolate'
+	option input 'ACCEPT'
+	option output 'ACCEPT'
+	option forward 'REJECT'
+	option auto_helper '0'
+	list network 'isolate'
+	option mtu_fix '1'
+
+config forwarding
+	option src 'lan'
+	option dest 'isolate'
+
+config forwarding
+	option src 'isolate'
+	option dest 'lan'
+
+config forwarding
+	option src 'isolate'
+	option dest 'wan'
+
+config forwarding
+	option src 'isolate'
+	option dest 'tun'
+

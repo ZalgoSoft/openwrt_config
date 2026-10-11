@@ -1,0 +1,36 @@
+
+config server '1_2_3_4'
+	option hostname '1.2.3.4'
+	option user 'user'
+	option LogLevel 'INFO'
+	option Compression 'no'
+	option retrydelay '10'
+	option ServerAliveInterval '60'
+	option CheckHostIP 'yes'
+	option StrictHostKeyChecking 'accept-new'
+	option port '22'
+	option IdentityFile '/root/.ssh/id_rsa_1_2_3_4_new'
+
+config server '1_2_3_4_root'
+	option hostname '1.2.3.4'
+	option user 'root'
+	option LogLevel 'INFO'
+	option Compression 'no'
+	option retrydelay '10'
+	option ServerAliveInterval '60'
+	option CheckHostIP 'yes'
+	option StrictHostKeyChecking 'accept-new'
+	option port '22'
+	option IdentityFile '/root/.ssh/id_rsa_1_2_3_4_new_root'
+
+config tunnelD
+	option server '1_2_3_4'
+	option localaddress '192.168.1.1'
+	option localport '1080'
+
+config tunnelW
+	option server '1_2_3_4_root'
+	option vpntype 'point-to-point'
+	option localdev '0'
+	option remotedev '0'
+

@@ -1,0 +1,152 @@
+
+config interface 'loopback'
+	option device 'lo'
+	option proto 'static'
+	option ipaddr '127.0.0.1'
+	option netmask '255.0.0.0'
+
+config globals 'globals'
+	option packet_steering '0'
+
+config device
+	option name 'br-lan'
+	option type 'bridge'
+	option stp '1'
+	list ports 'eth0.10'
+
+config interface 'lan'
+	option device 'br-lan'
+	option proto 'static'
+	option ipaddr '192.168.1.1'
+	option netmask '255.255.255.0'
+
+config interface 'wan'
+	option proto 'dhcp'
+	option device 'phy0-sta0'
+	option sendclientid 'auto'
+
+config interface 'socks5tun'
+	option proto 'none'
+	option device 'tun0'
+
+config interface 'ssh2tun'
+	option proto 'static'
+	option ipaddr '10.0.0.1'
+	option netmask '255.255.255.252'
+	option device '@socks5tun'
+
+config route
+	option interface 'wan'
+	option target '45.154.73.71/32'
+	option gateway '192.168.0.1'
+	option disabled '1'
+
+config route
+	option interface 'ssh2tun'
+	option target '18.172.31.0/24'
+	option disabled '1'
+
+config route
+	option interface 'ssh2tun'
+	option target '167.82.0.0/16'
+	option disabled '1'
+
+config route
+	option interface 'ssh2tun'
+	option target '146.75.0.0/16'
+	option disabled '1'
+
+config route
+	option interface 'ssh2tun'
+	option target '167.82.0.0/16'
+	option disabled '1'
+
+config switch
+	option name 'switch0'
+	option enable_vlan '1'
+	option reset '1'
+	option enable_mirror_rx '1'
+	option enable_mirror_tx '1'
+	option mirror_source_port '4'
+	option mirror_monitor_port '6'
+
+config switch
+	option name 'switch1'
+	option reset '1'
+	option enable_vlan '1'
+	option enable_vlan4k '1'
+
+config device
+	option name 'eth0'
+
+config device
+	option name 'phy1-ap0'
+
+config device
+	option name 'phy0-sta0'
+
+config switch_vlan
+	option device 'switch1'
+	option ports '2 7t'
+	option vlan '10'
+	option vid '10'
+
+config switch_vlan
+	option device 'switch0'
+	option vlan '10'
+	option ports '4t 6t'
+	option vid '10'
+
+config switch_vlan
+	option device 'switch0'
+	option vlan '13'
+	option ports '4t 6t'
+	option vid '13'
+
+config device
+	option name 'tun0'
+
+config switch_vlan
+	option device 'switch1'
+	option ports '3 7t'
+	option vlan '13'
+
+config device
+	option name 'eth0.10'
+	option type '8021q'
+	option ifname 'eth0'
+	option vid '10'
+
+config device
+	option type 'bridge'
+	option name 'br-isolate'
+	list ports 'eth0.13'
+	option stp '1'
+
+config interface 'isolate'
+	option proto 'static'
+	option device 'br-isolate'
+	option ipaddr '192.168.2.1'
+	option netmask '255.255.255.0'
+	option multipath 'off'
+
+config device
+	option name 'eth0.13'
+	option type '8021q'
+	option ifname 'eth0'
+	option vid '13'
+
+config device
+	option name 'phy1-ap1'
+
+config switch_vlan
+	option device 'switch0'
+	option vlan '1'
+	option vid '1'
+	option ports '4t 6t'
+
+config switch_vlan
+	option device 'switch1'
+	option ports '0 1 4 7t'
+	option vlan '1'
+

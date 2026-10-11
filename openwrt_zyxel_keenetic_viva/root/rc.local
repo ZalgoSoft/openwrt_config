@@ -1,0 +1,35 @@
+# Put your custom commands here that should be executed once
+# the system init finished. By default this file does nothing.
+swconfig dev switch0 set reset 1
+swconfig dev switch0 set mirror_monitor_port 6
+swconfig dev switch0 port 4 set enable_mirror_rx 1
+swconfig dev switch0 port 4 set enable_mirror_tx 1
+swconfig dev switch0 port 6 set enable_mirror_rx 1
+swconfig dev switch0 port 6 set enable_mirror_tx 1
+swconfig dev switch0 set apply
+
+#swconfig dev switch0 vlan 1 set ports '0 1 2 3 4 5 6 7'
+swconfig dev switch1 vlan 1 set ports '0 1 2 3 4 5 6 7'
+
+#swconfig dev switch0 port 0 set pvid 0
+#swconfig dev switch0 port 1 set pvid 0
+#swconfig dev switch0 port 2 set pvid 0
+#swconfig dev switch0 port 3 set pvid 0
+#swconfig dev switch0 port 4 set pvid 1
+#swconfig dev switch0 port 5 set pvid 0
+#swconfig dev switch0 port 6 set pvid 1
+#swconfig dev switch0 port 7 set pvid 0
+swconfig dev switch1 port 0 set pvid 1
+swconfig dev switch1 port 1 set pvid 1
+swconfig dev switch1 port 2 set pvid 1
+swconfig dev switch1 port 3 set pvid 1
+swconfig dev switch1 port 4 set pvid 1
+swconfig dev switch1 port 5 set pvid 1
+swconfig dev switch1 port 6 set pvid 1
+swconfig dev switch1 port 7 set pvid 1
+
+swconfig dev switch0 set apply
+swconfig dev switch1 set apply
+#echo 1 > /sys/class/net/br-lan/brif/eth0/hairpin_mode
+#brctl setpathcost br-lan phy1-ap0 200
+exit 0

@@ -1,0 +1,164 @@
+{
+	"model": {
+		"id": "zyxel,keenetic-viva",
+		"name": "Zyxel Keenetic Viva"
+	},
+	"led": {
+		"wifi_led": {
+			"name": "wifi",
+			"sysfs": "green:wifi",
+			"type": "netdev",
+			"device": "wlan0",
+			"mode": "link tx rx"
+		}
+	},
+	"switch": {
+		"switch1": {
+			"enable": true,
+			"reset": true,
+			"ports": [
+				{
+					"num": 0,
+					"role": "lan"
+				},
+				{
+					"num": 1,
+					"role": "lan"
+				},
+				{
+					"num": 2,
+					"role": "lan"
+				},
+				{
+					"num": 3,
+					"role": "lan"
+				},
+				{
+					"num": 4,
+					"role": "lan"
+				},
+				{
+					"num": 7,
+					"device": "eth0",
+					"need_tag": true,
+					"want_untag": false
+				}
+			],
+			"roles": [
+				{
+					"role": "lan",
+					"ports": "0 2 3 4 5 6 7t",
+					"device": "eth0.10"
+				},
+				{
+					"role": "isolate",
+					"ports": "1 7t",
+					"device": "eth0.13"
+				}
+			]
+		},
+		"switch0": {
+			"enable": true,
+			"reset": true,
+			"ports": [
+				{
+					"num": 0,
+					"role": "lan"
+				},
+				{
+					"num": 1,
+					"role": "lan"
+				},
+				{
+					"num": 2,
+					"role": "lan"
+				},
+				{
+					"num": 3,
+					"role": "lan"
+				},
+				{
+					"num": 4,
+					"role": "lan"
+				},
+				{
+					"num": 5,
+					"role": "lan"
+				},
+				{
+					"num": 6,
+					"role": "lan"
+				},
+				{
+					"num": 7,
+					"role": "lan"
+				}
+			],
+                        "roles": [
+                                {
+					"role": "en",
+                                        "ports": "4t 4t"
+                                }
+                                                        ]
+
+		}
+	},
+	"network": {
+		"lan": {
+			"device": "br-lan",
+			"protocol": "static"
+		},
+                "isolate": {
+                        "device": "br-isolate",
+                        "protocol": "static"
+                },
+		"wan": {
+			"device": "phy0-sta0",
+			"protocol": "dhcp"
+		}
+	},
+	"wlan": {
+		"phy0": {
+			"path": "platform/101c0000.ehci/usb1/1-1/1-1:1.0",
+			"info": {
+				"antenna_rx": 0,
+				"antenna_tx": 0,
+				"bands": {
+					"2G": {
+						"ht": true,
+						"max_width": 40,
+						"modes": [
+							"NOHT",
+							"HT20",
+							"HT40"
+						],
+						"default_channel": 1
+					}
+				},
+				"radios": [
+				]
+			}
+		},
+		"phy1": {
+			"path": "platform/10180000.wmac",
+			"info": {
+				"antenna_rx": 0,
+				"antenna_tx": 0,
+				"bands": {
+					"2G": {
+						"ht": true,
+						"max_width": 40,
+						"modes": [
+							"NOHT",
+							"HT20",
+							"HT40"
+						],
+						"default_channel": 1
+					}
+				},
+				"radios": [
+				]
+			}
+		}
+	}
+}

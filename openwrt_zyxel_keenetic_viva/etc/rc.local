@@ -1,0 +1,20 @@
+swconfig dev switch0 set reset 1
+swconfig dev switch0 set enable_vlan 1
+swconfig dev switch0 vlan 10 set ports '4t 6t'
+swconfig dev switch0 vlan 13 set ports '4t 6t'
+
+swconfig dev switch0 set mirror_monitor_port 6
+swconfig dev switch0 port 4 set enable_mirror_rx 1
+swconfig dev switch0 port 4 set enable_mirror_tx 1
+swconfig dev switch0 set apply 1
+
+swconfig dev switch1 set reset 1
+swconfig dev switch1 set enable_vlan 1
+swconfig dev switch1 set enable_vlan4k 1
+swconfig dev switch1 vlan 10 set ports '2 7t'
+swconfig dev switch1 vlan 13 set ports '3 7t'
+swconfig dev switch1 port 2 set pvid 10
+swconfig dev switch1 port 3 set pvid 13
+swconfig dev switch1 set apply 1
+
+exit 0

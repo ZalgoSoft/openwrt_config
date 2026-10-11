@@ -1,0 +1,28 @@
+
+config system
+	option hostname 'OpenWrt1'
+	option timezone '<+08>-8'
+	option zonename 'Asia/Irkutsk'
+	option clock_timestyle '1'
+	option clock_hourcycle 'h23'
+
+config timeserver 'ntp'
+	list server '0.openwrt.pool.ntp.org'
+	list server '1.openwrt.pool.ntp.org'
+	list server '2.openwrt.pool.ntp.org'
+	list server '3.openwrt.pool.ntp.org'
+
+config led
+	option name 'wwan-link'
+	option sysfs 'rt2800soc-phy1::assoc'
+	option trigger 'netdev'
+	option dev 'phy0-sta0'
+	list mode 'link'
+
+config led
+	option name 'tun0-link'
+	option sysfs 'rt2800soc-phy1::quality'
+	option trigger 'netdev'
+	option dev 'tun0'
+	list mode 'link'
+

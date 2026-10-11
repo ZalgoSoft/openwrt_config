@@ -1,0 +1,5 @@
+Model	Zyxel Keenetic Viva
+Architecture	MediaTek MT7620A ver:2 eco:4
+Target Platform	ramips/mt7620
+Firmware Version	OpenWrt 25.12.5 r33051-f5dae5ece4 / LuCI openwrt-25.12 branch 26.255.67114~2629964
+Kernel Version	6.12.94
